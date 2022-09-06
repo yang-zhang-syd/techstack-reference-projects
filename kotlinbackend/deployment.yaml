@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kotlin-backend
+  name: kotlin-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kotlin-backend
+  template:
+    metadata:
+      labels:
+        app: kotlin-backend
+    spec:
+      containers:
+      - image: kotlinbackend
+        name: kotlinbackend
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: kotlin-backend
+  name: kotlin-backend-service
+spec:
+  ports:
+  - port: 1388
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: kotlin-backend
+  type: NodePort

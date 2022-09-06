@@ -9,4 +9,4 @@ services:
       dockerfile: Dockerfile
     image: kotlinbackend
     ports:
-      - '1338:8080'
+      - '1388:8080'
