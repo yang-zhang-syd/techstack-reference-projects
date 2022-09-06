@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jumpbox
+  name: jumpbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jumpbox
+  template:
+    metadata:
+      labels:
+        app: jumpbox
+    spec:
+      containers:
+      - image: wbitt/network-multitool:alpine-extra
+        name: jumpbox
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 80

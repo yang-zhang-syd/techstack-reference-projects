@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+
+  kotlinbackend:
+    container_name: kotlinbackend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kotlinbackend
+    ports:
+      - '1338:8080'
